@@ -2,19 +2,39 @@ import {useEffect, useState} from 'react'
 
 
 const App = () =>{
+
+  const [characters, setCharacters] = useState([]);
+
   useEffect(() => {
     const callAPI = async()=>{
       const response = await fetch("https://rickandmortyapi.com/api/character")
       const data = await response.json()
       
-      console.log(data);
+      setCharacters(data.results);
     }
 
     callAPI();
   }, [])
 
   return(
-    <h2>hola mundo desde react</h2>
+    <div>
+      <h2>Characters List</h2>
+      {
+        characters.map(character => { 
+          return(
+            <div key={character.id}>
+              <h2>
+                {character.name}
+              </h2>
+              <img 
+                src={character.image}
+                alt="character img"
+              />
+            </div>
+          )
+        })
+      }
+    </div>
   )
 }
 
