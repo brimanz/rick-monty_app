@@ -5,6 +5,7 @@ import Character from '../Character/Character'
 const CharacterList = () =>{
 
 	const [characters, setCharacters] = useState([]);
+	const [loading, setLoading] = useState(true);
 
   	useEffect(() => {
     	const callAPI = async()=>{
@@ -17,17 +18,23 @@ const CharacterList = () =>{
     	callAPI();
   	}, [])
 
+  	if(loading){
+  		return(
+  			<div>Loading...</div>
+  		)
+  	}
 
 
 	return(
-		<div>
+		<div className="container bg-danger row">
 			{
 	        	characters.map(character => { 
 	          		return(
-	            		<Character 
-	            			key={character.id}
-	            			character={character}
-	            		/>
+	          			<div className="col-md-4" key={character.id}>
+		            		<Character 
+		            			character={character}
+		            		/>
+	          			</div>
 	        		)
 	        	})
 	    	}
