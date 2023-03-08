@@ -10,6 +10,7 @@ const CharacterList = () =>{
   	useEffect(() => {
     	const callAPI = async()=>{
       		const response = await fetch("https://rickandmortyapi.com/api/character")
+      		setLoading(false)
       		const data = await response.json()
       
       	setCharacters(data.results);
@@ -18,28 +19,27 @@ const CharacterList = () =>{
     	callAPI();
   	}, [])
 
-  	if(loading){
-  		return(
-  			<div>Loading...</div>
-  		)
-  	}
-
-
-	return(
-		<div className="container bg-danger row">
-			{
-	        	characters.map(character => { 
-	          		return(
-	          			<div className="col-md-4" key={character.id}>
-		            		<Character 
-		            			character={character}
-		            		/>
-	          			</div>
-	        		)
-	        	})
-	    	}
-		</div>
-	);
+  	return(
+  		<div className="container bg-danger">
+  			{
+  				loading ? 
+  				(
+  					<h2>Loading...</h2>
+  				) : 
+  				(
+  					<div className="row">
+  						{characters.map((character) => {
+  							return(
+  								<div className="col-md-4" key={character.id}>
+									<Character character={character}/>  									
+  								</div>
+  							)
+  						})}
+  					</div>
+  				)
+  			}
+  		</div>
+  	)
 }
 
 
