@@ -1,5 +1,6 @@
 import {useEffect, useState} from 'react'
 import Character from '../Character/Character'
+import './CharacterList.scss'
 
 
 const CharacterList = () =>{
@@ -20,12 +21,13 @@ const CharacterList = () =>{
   	}, [])
 
   	return(
-  		<div className="container bg-danger">
+  		<div className="app__characterList container">
   			{
   				loading ? 
   				(
-  					<h2>Loading...</h2>
+  					<h2 className="app__characterList-loading">Loading...</h2>
   				) : 
+  				
   				(
   					<div className="row">
   						{characters.map((character) => {

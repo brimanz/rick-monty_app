@@ -1,12 +1,14 @@
+import './Character.scss'
 
 
 const Character = ({character}) =>{
 	return(
-		<div>
-	        <h2>
+		<div className="app__character text-center p-5">
+	        <h2 className="app__character-title">
 	            {character.name}
 	        </h2>
-	        <img 
+	        <img
+	        	className="app__character-img img-fluid" 
 				src={character.image}
 				alt="character img"
 			/>
