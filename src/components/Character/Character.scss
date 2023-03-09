@@ -1,0 +1,29 @@
+.app__character{
+	display: flex;
+	flex-direction: row-reverse;
+	margin: 1rem;
+	justify-content: center;
+	align-items: center;
+
+	.app__character-title{
+		font-size: 1.5rem;
+		padding: 0.5rem;
+		font-family: sans-serif;
+		font-weight: bold;
+
+		text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.65);
+	}
+
+	.app__character-img{
+		width: 12rem;
+		height: 12rem;
+		border-radius: 50%;
+		border: solid 4px rgba(255, 255, 255, 0.65);
+
+		box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.65);
+
+		&:hover{
+			border: solid 4px rgba(0, 255, 255, 0.65);			
+		}
+	}
+}
