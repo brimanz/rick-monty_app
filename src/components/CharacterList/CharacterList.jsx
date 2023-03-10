@@ -3,15 +3,21 @@ import Character from '../Character/Character'
 import './CharacterList.scss'
 
 
-function ButtonPage() {
+function ButtonPage({page, setPage}) {
 	return(
 		<header className="d-flex justify-content-between align-items-center">
-			<p>Page 1:</p>
+			<p>Page: {page}</p>
 
 			<button
-				onClick={() => console.log("Click...")} 
+				onClick={() => setPage(page + 1)} 
 				className="btn btn-primary"
-			>Page 2
+			>Next Page
+			</button>
+
+			<button
+				onClick={() => setPage(page - 1)} 
+				className="btn btn-secondary"
+			>Back Page
 			</button>
 		</header>
 	)
@@ -22,10 +28,11 @@ const CharacterList = () =>{
 
 	const [characters, setCharacters] = useState([]);
 	const [loading, setLoading] = useState(true);
+	const [page, setPage] = useState(1);
 
   	useEffect(() => {
     	const callAPI = async()=>{
-      		const response = await fetch("https://rickandmortyapi.com/api/character?page=1")
+      		const response = await fetch(`https://rickandmortyapi.com/api/character?page=${page}`)
       		setLoading(false)
       		const data = await response.json()
       
@@ -33,14 +40,16 @@ const CharacterList = () =>{
     	}
 
     	callAPI();
-  	}, [])
+  	}, [page])
 
 
   	return(
   		<div className="app__characterList container">
 
-  			<ButtonPage/>
-
+  			<ButtonPage
+  				page={page}
+  				setPage={setPage}
+  			/>
 
   			{
   				loading ? 
