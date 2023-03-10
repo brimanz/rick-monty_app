@@ -3,6 +3,21 @@ import Character from '../Character/Character'
 import './CharacterList.scss'
 
 
+function ButtonPage() {
+	return(
+		<header className="d-flex justify-content-between align-items-center">
+			<p>Page 1:</p>
+
+			<button
+				onClick={() => console.log("Click...")} 
+				className="btn btn-primary"
+			>Page 2
+			</button>
+		</header>
+	)
+}
+
+
 const CharacterList = () =>{
 
 	const [characters, setCharacters] = useState([]);
@@ -10,7 +25,7 @@ const CharacterList = () =>{
 
   	useEffect(() => {
     	const callAPI = async()=>{
-      		const response = await fetch("https://rickandmortyapi.com/api/character")
+      		const response = await fetch("https://rickandmortyapi.com/api/character?page=1")
       		setLoading(false)
       		const data = await response.json()
       
@@ -20,8 +35,13 @@ const CharacterList = () =>{
     	callAPI();
   	}, [])
 
+
   	return(
   		<div className="app__characterList container">
+
+  			<ButtonPage/>
+
+
   			{
   				loading ? 
   				(
@@ -32,7 +52,7 @@ const CharacterList = () =>{
   					<div className="row">
   						{characters.map((character) => {
   							return(
-  								<div className="col-md-4" key={character.id}>
+  								<div className="col-md-6" key={character.id}>
 									<Character character={character}/>  									
   								</div>
   							)
