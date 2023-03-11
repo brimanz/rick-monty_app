@@ -1,20 +1,20 @@
-
+import './ButtonPage.scss'
 
 
 const ButtonPage = ({page, setPage}) => {
 	return(
-		<header className="d-flex justify-content-between align-items-center">
-			<p>Page: {page}</p>
+		<header className="app__buttonpage d-flex justify-content-between align-items-center">
+			<p className="app__buttonpage-text">Page: {page}</p>
 
 			<button
 				onClick={() => setPage(page + 1)} 
-				className="btn btn-primary"
+				className="app__buttonpage-next"
 			>Next Page
 			</button>
 
 			<button
 				onClick={() => setPage(page - 1)} 
-				className="btn btn-secondary"
+				className="app__buttonpage-back"
 			>Back Page
 			</button>
 		</header>
