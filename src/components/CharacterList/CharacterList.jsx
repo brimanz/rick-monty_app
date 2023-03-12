@@ -49,6 +49,11 @@ const CharacterList = () =>{
   					</div>
   				)
   			}
+
+  			<ButtonPage
+  				page={page}
+  				setPage={setPage}
+  			/>
   		</div>
   	)
 }
